@@ -1,0 +1,130 @@
+{
+  "openResourceDiscovery": "1.6",
+  "description": "ORD-compliant Agent Cards describing Google Workspace, Google Data, and Google Maps agents.",
+  "describedSystemInstance": {
+    "baseUrl": "https://agentspace.google.com"
+  },
+  "policyLevel": "sap:core:v1",
+  "agentCards": [
+    {
+      "name": "Google Workspace Agent",
+      "description": "Agent that automates tasks within Gmail and Google Calendar, such as creating emails and scheduling events.",
+      "url": "https://agentspace.workspace-agent.google.com",
+      "provider": {
+        "organization": "Google",
+        "url": "https://agentspace.workspace.google.com"
+      },
+      "version": "1.0.0",
+      "documentationUrl": "https://agentspace.developers.google.com/workspace",
+      "capabilities": {
+        "streaming": true,
+        "callback": true,
+        "stateTransitionHistory": true
+      },
+      "authentication": {
+        "schemes": ["OAuth2"],
+        "credentials": "OAuth2 credentials from Google Cloud Platform."
+      },
+      "defaultInputModes": ["application/json"],
+      "defaultOutputModes": ["application/json"],
+      "skills": [
+        {
+          "id": "google.workspace.skill:create-email:v1",
+          "name": "Create Email",
+          "description": "Creates and sends emails through Gmail.",
+          "tags": ["email", "communication"],
+          "examples": ["Send an email to Jane Doe.", "Compose an email about project updates."]
+        },
+        {
+          "id": "google.workspace.skill:create-calendar-event:v1",
+          "name": "Create Calendar Event",
+          "description": "Schedules meetings and events in Google Calendar.",
+          "tags": ["calendar", "scheduling"],
+          "examples": ["Schedule a meeting for Monday at 10 AM.", "Add team standup to calendar."]
+        }
+      ]
+    },
+    {
+      "name": "Google Data Agent",
+      "description": "Agent that reconciles data between point-of-sale terminals, invoices, and inventory using BigQuery.",
+      "url": "https://agentspace.data-agent.google.com",
+      "provider": {
+        "organization": "Google",
+        "url": "https://agentspace.cloud.google.com/bigquery"
+      },
+      "version": "1.0.0",
+      "documentationUrl": "https://agentspace.cloud.google.com/bigquery/docs",
+      "capabilities": {
+        "streaming": false,
+        "callback": true,
+        "stateTransitionHistory": true
+      },
+      "authentication": {
+        "schemes": ["OAuth2"],
+        "credentials": "OAuth2 credentials from Google Cloud Platform."
+      },
+      "defaultInputModes": ["application/json"],
+      "defaultOutputModes": ["application/json"],
+      "skills": [
+        {
+          "id": "google.data.skill:reconcile-pos:v1",
+          "name": "Reconcile POS Data",
+          "description": "Reconciles sales data from POS terminals against invoices.",
+          "tags": ["data reconciliation", "POS", "finance"],
+          "examples": ["Reconcile today's sales data.", "Verify inventory against sales."]
+        },
+        {
+          "id": "google.data.skill:update-inventory:v1",
+          "name": "Update Inventory",
+          "description": "Updates and manages inventory based on reconciled sales data.",
+          "tags": ["inventory management", "analytics"],
+          "examples": ["Update inventory levels after today's sales.", "Show discrepancies in stock levels."]
+        }
+      ]
+    },
+    {
+      "name": "Google Maps Agent",
+      "description": "Plan routes, remember places, and generate directions.",
+      "url": "https://agentspace.maps-agent.google.com",
+      "provider": {
+        "organization": "Google",
+        "url": "https://agentspace.google.com"
+      },
+      "version": "1.0.0",
+      "authentication": {
+        "schemes": ["OAuth2"]
+      },
+      "defaultInputModes": ["text/plain"],
+      "defaultOutputModes": ["text/plain", "application/html"],
+      "capabilities": {
+        "streaming": true,
+        "pushNotifications": false
+      },
+      "skills": [
+        {
+          "id": "route-planner",
+          "name": "Route Planning",
+          "description": "Helps plan routing between two locations.",
+          "tags": ["maps", "routing", "navigation"],
+          "examples": [
+            "Plan my route from Sunnyvale to Mountain View.",
+            "What's the commute time from Sunnyvale to San Francisco at 9AM?",
+            "Create turn-by-turn directions from Sunnyvale to Mountain View."
+          ],
+          "outputModes": ["application/html", "video/mp4"]
+        },
+        {
+          "id": "custom-map",
+          "name": "My Map",
+          "description": "Manage a custom map with your own saved places.",
+          "tags": ["custom-map", "saved-places"],
+          "examples": [
+            "Show me my favorite restaurants on the map.",
+            "Create a visual of all places I've visited in the past year."
+          ],
+          "outputModes": ["application/html"]
+        }
+      ]
+    }
+  ]
+}
